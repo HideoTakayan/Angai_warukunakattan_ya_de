@@ -1,98 +1,96 @@
 show databases;
 use defaultdb;
-show tables;
-CREATE TABLE IF NOT EXISTS persons (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    name VARCHAR(100) NOT NULL,
-    date_of_birth DATE NOT NULL,
-    gender ENUM('Male', 'Female') NOT NULL
+create table if not exists persons (
+    person_id int auto_increment primary key,
+    name varchar(100) not null,
+    date_of_birth date not null,
+    gender enum('male', 'female') not null
 );
 
--- Tạo bảng 'lecturers'
-CREATE TABLE IF NOT EXISTS lecturers (
-    lecturer_id INT AUTO_INCREMENT PRIMARY KEY,
-    person_id INT NOT NULL,
-    FOREIGN KEY (person_id) REFERENCES persons(id) ON DELETE CASCADE
+-- tạo bảng 'lecturers'
+create table if not exists lecturers (
+    lecturer_id int auto_increment primary key,
+    person_id int not null,
+    foreign key (person_id) references persons(person_id) on delete cascade
 );
 
--- Tạo bảng 'students'
-CREATE TABLE IF NOT EXISTS students (
-    student_id INT AUTO_INCREMENT PRIMARY KEY,
-    person_id INT NOT NULL,
-    FOREIGN KEY (person_id) REFERENCES persons(id) ON DELETE CASCADE
+-- tạo bảng 'students'
+create table if not exists students (
+    student_id int auto_increment primary key,
+    person_id int not null,
+    foreign key (person_id) references persons(person_id) on delete cascade
 );
 
--- Bảng auto_subjects với ID tự sinh
-CREATE TABLE IF NOT EXISTS auto_subjects (
-    auto_subject_id INT AUTO_INCREMENT PRIMARY KEY,
-    subject_name VARCHAR(255) NOT NULL,
-    credits INT NOT NULL,
-    lecturer_id INT,
-    FOREIGN KEY (lecturer_id) REFERENCES lecturers(lecturer_id) ON DELETE CASCADE
+-- bảng auto_subjects với id tự sinh
+create table if not exists auto_subjects (
+    auto_subject_id int auto_increment primary key,
+    subject_name varchar(255) not null,
+    credits int not null,
+    lecturer_id int,
+    foreign key (lecturer_id) references lecturers(lecturer_id) on delete cascade
 );
 
--- Bảng custom_subjects với ID tự nhập
-CREATE TABLE IF NOT EXISTS custom_subjects (
-    custom_subject_id INT PRIMARY KEY,
-    auto_subject_id INT,
-    FOREIGN KEY (auto_subject_id) REFERENCES auto_subjects(auto_subject_id) ON DELETE CASCADE
+-- bảng custom_subjects với id tự nhập
+create table if not exists custom_subjects (
+    custom_subject_id int primary key,
+    auto_subject_id int,
+    foreign key (auto_subject_id) references auto_subjects(auto_subject_id) on delete cascade
 );
 
--- Tạo bảng 'Grades'
-CREATE TABLE IF NOT EXISTS grades (
-    student_id INT,
-    custom_subject_id INT,
-    score DECIMAL(3, 2),
-    PRIMARY KEY (student_id, custom_subject_id),
-    FOREIGN KEY (student_id) REFERENCES students(student_id),
-    FOREIGN KEY (custom_subject_id) REFERENCES custom_subjects(custom_subject_id) ON DELETE CASCADE
+-- tạo bảng 'grades'
+create table if not exists grades (
+    student_id int,
+    custom_subject_id int,
+    score decimal(3, 2),
+    primary key (student_id, custom_subject_id),
+    foreign key (student_id) references students(student_id),
+    foreign key (custom_subject_id) references custom_subjects(custom_subject_id) on delete cascade
 );
 
--- Tạo bảng 'enrollments'
-CREATE TABLE IF NOT EXISTS enrollments (
-    student_id INT,
-    custom_subject_id INT,
-    PRIMARY KEY (student_id, custom_subject_id),
-    FOREIGN KEY (student_id) REFERENCES students(student_id) ON DELETE CASCADE,
-    FOREIGN KEY (custom_subject_id) REFERENCES custom_subjects(custom_subject_id) ON DELETE CASCADE
+-- tạo bảng 'enrollments'
+create table if not exists enrollments (
+    student_id int,
+    custom_subject_id int,
+    primary key (student_id, custom_subject_id),
+    foreign key (student_id) references students(student_id) on delete cascade,
+    foreign key (custom_subject_id) references custom_subjects(custom_subject_id) on delete cascade
 );
 
-INSERT INTO persons (name, date_of_birth, gender) VALUES
-('Nguyen Van A', '1980-01-01', 'Male'),
-('Tran Thi B', '1985-02-02', 'Female'),
-('Le Van C', '1975-03-03', 'Male'),
-('Pham Thi D', '1990-04-04', 'Female'),
-('Nguyen Van E', '1982-05-05', 'Male');
+insert into persons (name, date_of_birth, gender) values
+('Nguyen Van A', '1980-01-01', 'male'),
+('Tran Thi B', '1985-02-02', 'female'),
+('Le Van C', '1975-03-03', 'male'),
+('Pham Thi D', '1990-04-04', 'female'),
+('Nguyen Van E', '1982-05-05', 'male');
 
-INSERT INTO lecturers (person_id) VALUES
+insert into lecturers (person_id) values
 (1), (2), (3), (4), (5);
 
-
-INSERT INTO students (person_id) VALUES
+insert into students (person_id) values
 (1), (2), (3), (4), (5);
 
-INSERT INTO auto_subjects (subject_name, credits, lecturer_id) VALUES
-('Mathematics', 3, 1),
-('Physics', 4, 2),
-('Chemistry', 3, 3),
-('Biology', 4, 4),
-('Computer Science', 3, 5);
+insert into auto_subjects (subject_name, credits, lecturer_id) values
+('mathematics', 3, 1),
+('physics', 4, 2),
+('chemistry', 3, 3),
+('biology', 4, 4),
+('computer science', 3, 5);
 
-INSERT INTO custom_subjects (custom_subject_id, auto_subject_id) VALUES
+insert into custom_subjects (custom_subject_id, auto_subject_id) values
 (101, 1),
 (102, 2),
 (103, 3),
 (104, 4),
 (105, 5);
 
-INSERT INTO grades (student_id, custom_subject_id, score) VALUES
+insert into grades (student_id, custom_subject_id, score) values
 (1, 101, 8.5),
 (2, 102, 7.0),
 (3, 103, 9.0),
 (4, 104, 8.5),
 (5, 105, 9.0);
 
-INSERT INTO enrollments (student_id, custom_subject_id) VALUES
+insert into enrollments (student_id, custom_subject_id) values
 (1, 101),
 (2, 102),
 (3, 103),

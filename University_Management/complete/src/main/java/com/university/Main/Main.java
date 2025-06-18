@@ -6,7 +6,7 @@ import com.university.model.Lecturer;
 import com.university.model.Subject;
 import com.university.model.Person;
 import com.university.bin.PersonDAO;
-import com.university.PersonDAOTest;
+import com.university.test.PersonDAOTest;
 
 public class Main {
     public static void main(String[] args) {

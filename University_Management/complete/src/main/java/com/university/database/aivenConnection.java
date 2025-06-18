@@ -9,19 +9,14 @@ import java.sql.Statement;
 import java.util.Locale;
 
 public class aivenConnection {
-    /*
-     * mysql://avnadmin:AVNS_2ZlIVz4ACEb86Eu0Exr@mysql-14737a33-nglthu-4e05.k.
-     * aivencloud.com:17237/defaultdb?ssl-mode=REQUIRED
-     */
     public void aivenConn() {
         Connection conn = null;
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(
-                    "jdbc:mysql://avnadmin:AVNS_RE3O2bhYZ_1_6ER7YK7@mysql-14737a33-nglthu-4e05.k.aivencloud.com:17237/defaultdb?ssl-mode=REQUIRED",
-                    "sqluser", "password");
+                    "jdbc:mysql://mysql-1e39359f-anhlasinhvien2k51-56ec.b.aivencloud.com:25535/defaultdb?ssl-mode=REQUIRED",
+                    "avnadmin", "AVNS_sKstp-4yWqfIfSJ_IBb");
 
-            // AVNS_2ZlIVz4ACEb86Eu0Exr
             Statement sta = conn.createStatement();
             ResultSet reset = sta.executeQuery("select * from user");
             System.out.println("Display data from database: ");
