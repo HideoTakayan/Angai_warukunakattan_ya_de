@@ -1,4 +1,4 @@
-package com.example.servingwebcontent;
+package com.university;
 
 public class Song {
     public String songID;
@@ -6,39 +6,38 @@ public class Song {
     public String songAuthor;
     public String country;
 
-    public Song(){}
+    public Song() {
+    }
 
-    public Song(String songID, String songName, String songAuthor, String country){
+    public Song(String songID, String songName, String songAuthor, String country) {
         this.songID = songID;
         this.songName = songName;
         this.songAuthor = songAuthor;
         this.country = country;
     }
-    public String getSongName(){
+
+    public String getSongName() {
         return this.songName;
     }
 
-    
-    
-    public void setSongID(String id){
+    public void setSongID(String id) {
         this.songID = id;
 
     }
-    public void setSongName(String name){
+
+    public void setSongName(String name) {
         this.songName = name;
 
     }
-    public void setSongAuthor(String author){
+
+    public void setSongAuthor(String author) {
         this.songAuthor = author;
 
     }
-    
-    public void setSongCountry(String country){
+
+    public void setSongCountry(String country) {
         this.country = country;
 
     }
-    
-
-    
 
 }

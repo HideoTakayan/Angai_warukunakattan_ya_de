@@ -1,9 +1,9 @@
-package University_Management.complete.src.test.java.com;
+package com.university;
 
 import com.university.model.Student;
 import com.university.model.Lecturer;
 import com.university.model.Person;
-import bin.PersonDAO;
+import com.university.bin.PersonDAO;
 
 import java.time.LocalDate;
 import java.util.List;

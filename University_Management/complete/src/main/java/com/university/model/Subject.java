@@ -1,4 +1,4 @@
-package model;
+package com.university.model;
 
 public class Subject {
     private int subjectID;

@@ -1,4 +1,4 @@
-package com.example.servingwebcontent;
+package com.university;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,17 +7,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.lang.RuntimeException;
 import java.util.ArrayList;
-import com.example.servingwebcontent.database.insertToAiven;
-import com.example.servingwebcontent.database.aivenConnection;
-
-
+import com.university.database.insertToAiven;
+import com.university.database.aivenConnection;
 
 @Controller
 public class LoginController {
 
 	@GetMapping("/Login")
 
-	public String login(@RequestParam(name = "fname", required = false, defaultValue = "OOP Class !") String name, @RequestParam String address,
+	public String login(@RequestParam(name = "fname", required = false, defaultValue = "OOP Class !") String name,
+			@RequestParam String address,
 			Model model) {
 
 		try {
@@ -48,7 +47,7 @@ public class LoginController {
 
 				ListUser lu = new ListUser();
 				lu.printListUser(al);
-				
+
 				model.addAllAttributes(al);
 				WriteToFile wf = new WriteToFile();
 				wf.ToFile(al);
@@ -56,7 +55,6 @@ public class LoginController {
 				iu.insertToAivenDb(u);
 				aivenConnection ac = new aivenConnection();
 				ac.aivenConn();
-				
 
 			}
 

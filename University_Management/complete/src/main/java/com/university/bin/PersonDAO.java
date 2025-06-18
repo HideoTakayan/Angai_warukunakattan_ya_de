@@ -1,8 +1,8 @@
-package bin;
+package com.university.bin;
 
-import model.Person;
-import model.Student;
-import model.Lecturer;
+import com.university.model.Person;
+import com.university.model.Student;
+import com.university.model.Lecturer;
 
 import java.util.ArrayList;
 import java.util.List;

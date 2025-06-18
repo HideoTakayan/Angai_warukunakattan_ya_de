@@ -1,4 +1,4 @@
-package com.example.servingwebcontent;
+package com.university;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public class WriteToFile {
     public void ToFile(ArrayList<User> u) {
         try {
-            
+
             int i = u.size() - 1;
             FileWriter writer = new FileWriter("./complete/File/Login.txt", true);
             writer.append("\n");
